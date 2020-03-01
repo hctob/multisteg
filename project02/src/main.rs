@@ -1,5 +1,5 @@
 use std::env; //eivnornment variables
-use std::path;
+//use std::path;
 use std::str::FromStr;
 use multisteglib;
 
@@ -23,8 +23,9 @@ fn main() {
                 let data_bytes: Vec<u8> = file_bytes[valid_header..].to_vec();
                 let decoded_message = multisteglib::decode_message(&data_bytes).unwrap();
                 println!("{}", decoded_message);
-            }*/ //working decode for one image
-            let num_threads: u32 = u32::from_str(&args[1].trim()).unwrap();
+            }*/
+            //working decode for one image
+            let _threads: u32 = u32::from_str(&args[1].trim()).unwrap();
             let decode_directory = &args[2].trim();
 
             let directory_check = std::path::Path::new(decode_directory).metadata().expect("Error: could not find path to specified directory");
@@ -45,7 +46,7 @@ fn main() {
                 let file_bytes: Vec<u8> = multisteglib::read_byte_by_byte(file_path.to_str().unwrap()).unwrap();
                 let valid_header = multisteglib::validate_header(&file_bytes);
                 if valid_header == -1 {
-                    eprintln!("{:?} is not a PPM file", dir.path());
+                    //eprintln!("{:?} is not a PPM file", dir.path());
                     continue;
                 }
                 else {
